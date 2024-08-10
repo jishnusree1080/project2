@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/selectric/1.13.0/selectric.css" rel="stylesheet">
+    <link href="{% static 'css/adhome.css' %}" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Company name</h2>
+        </div>
+        <nav class="nav flex-column">
+            <a href="{% url 'admin_home' %}" class="nav-link active"><span class="icon">🏠</span>Dashboard</a>
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="updatesDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="icon">📦</span> Updates
+                </a>
+                <div class="dropdown-menu" aria-labelledby="updatesDropdown">
+                    <a class="dropdown-item" href="{% url 'list_update' %}">All Updates</a>
+                    <a class="dropdown-item" href="{% url 'update_list' %}">Monthly</a>
+                    <a class="dropdown-item" href="{% url 'weekly_update' %}">Weekly</a>
+                </div>
+            </div>
+            <a href="{% url 'all_leave' %}" class="nav-link"><span class="icon">📦</span>Leaves</a>
+            <a href="{% url 'monthly_statement' %}" class="nav-link"><span class="icon">📦</span>Employee Attendance</a>
+            <a href="{% url 'monthly-attendance' %}" class="nav-link"><span class="icon">📦</span>Monthly Attendance</a>
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="expensesDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="icon">📦</span> Expenses
+                </a>
+                <div class="dropdown-menu" aria-labelledby="expensesDropdown">
+                    <a class="dropdown-item" href="{% url 'pending_exp' %}">Pending</a>
+                    <a class="dropdown-item" href="{% url 'accepted_exp' %}">Accepted</a>
+                    <a class="dropdown-item" href="{% url 'rejected_exp' %}">Rejected</a>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+    <div class="main-content">
+        <header>
+            <!-- <input type="text" class="search" placeholder="Search"> -->
+            <button class="sign-out" style="margin-block-end: 1px;">Sign out</button>
+        </header>
+
+        <div class="projects">
+            <h2>Daily Updates</h2>
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>EMPLOYEE</th>
+                        <th>DATE</th>
+                        <th>COLLEGE</th>
+                        <th>TRANSPORT</th>
+                        <th>TICKET</th>
+                        <th>FUEL RECIEPT</th>
+                        <th>FOOD BILL</th>
+                        <th>OTHERS</th>
+                        <th>ACCEPT</th>
+                        <th>REJECT</th>
+
+
+                    </tr>
+                </thead>
+                {% for i in expenses %}
+                <tbody>
+                    <tr>
+                        <td>{{i.user}}</td>
+                        <td>{{i.date}}</td>
+                        <td>{{i.college}}</td>
+                        <td>{{i.transport}}</td>
+                        {% if not i.ticket %}
+                        <td>not available</td>
+                        {% else %}
+                        <td><a href="{{ i.ticket.url }}" target="_blank"><button>view</button></a></td>
+                        {% endif %}
+                        {% if not i.fuel_receipt %}
+                        <td>not available</td>
+                        {% else %}
+                        <td><a href="{{ i.fuel_receipt.url }}" target="_blank"><button>view</button></a></td>
+                        {% endif %}
+                        {% if not i.food_bill %}
+                        <td>not available</td>
+                        {% else %}
+                        <td><a href="{{ i.food_bill.url }}" target="_blank"><button>view</button></a></td>
+                        {% endif %}
+                        {% if not i.others %}
+                        <td>not available</td>
+                        {% else %}
+                        <td><a href="{{ i.others.url }}" target="_blank"><button>view</button></a></td>
+                        {% endif%}
+                        <td><button class="btn btn-light"><a href="{% url 'accp_exp' i.id %}">Allow</a></button></td>
+                        <td><button class="btn btn-light"><a href="{% url 'rjt_exp' i.id %}">Reject</a></button></td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    </main>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectric/1.13.0/jquery.selectric.min.js"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+</body>
+
+</html>

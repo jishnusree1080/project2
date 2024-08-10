@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Update Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/selectric/1.13.0/selectric.css" rel="stylesheet">
+    <link href="{% static 'css/adhome.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .form-container {
+            background-color: #1b2a47; /* Form background color */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            color: #ffffff; /* Text color */
+            text-align: center;
+            margin: 20px auto;
+        }
+        .form-container h1 {
+            background-color: #ff9933; /* Header background color */
+            border-radius: 15px 15px 0 0;
+            margin: -30px -30px 20px -30px;
+            padding: 20px;
+            font-size: 24px;
+            color: #ffffff; /* Header text color */
+        }
+        .form-container label {
+            display: block;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+        }
+        .form-container input[type="date"], 
+        .form-container input[type="text"], 
+        .form-container textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin: 0 auto 10px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333f5c; /* Input background color */
+            color: #ffffff; /* Input text color */
+        }
+        .form-container button {
+            background-color: #ff9933; /* Button background color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #ffffff; /* Button text color */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background-color: #cc7a29; /* Button hover color */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Daily Update Form</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectric/1.13.0/jquery.selectric.min.js"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+</body>
+</html>

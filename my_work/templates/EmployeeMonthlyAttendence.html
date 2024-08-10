@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Attendance</title>
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Attendance for {{ month }}/{{ year }} of {{ request.user }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>CHECK-IN</th>
+                    <th>CHECK-OUT</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in attendance_data %}
+                <tr>
+                    <td data-label="DATE">{{ i.date }}</td>
+                    <td data-label="CHECK-IN">{{ i.checkin }}</td>
+                    <td data-label="CHECK-OUT">{{ i.checkout }}</td>
+                    <td data-label="STATUS">
+                        {% if i.start %}
+                            {% if i.end %}
+                                Duty completed
+                            {% else %}
+                                Incomplete
+                            {% endif %}
+                        {% else %}
+                            Absent
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h1>Leave taken by {{ request.user }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>REASON</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k in leaves %}
+                <tr>
+                    <td data-label="DATE">{{ k.date }}</td>
+                    <td data-label="REASON">{{ k.reason }}</td>
+                    <td data-label="STATUS">
+                        {% if k.status %}
+                            Approved
+                        {% else %}
+                            Not approved
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Task Form</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0d1125; /* Dark background color */
+        }
+        .form-container {
+            background-color: #1b2a47; /* Form background color */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            color: #ffffff; /* Text color */
+            text-align: center;
+        }
+        .form-container h1 {
+            background-color: #ff9933; /* Header background color */
+            border-radius: 15px 15px 0 0;
+            margin: -30px -30px 20px -30px;
+            padding: 20px;
+            font-size: 24px;
+            color: #ffffff; /* Header text color */
+        }
+        .form-container p {
+            margin: 10px 0;
+        }
+        .form-container label {
+            display: block;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+        }
+        .form-container input[type="date"],
+        .form-container input[type="time"],
+        .form-container input[type="text"],
+        .form-container textarea,
+        .form-container input[type="url"] {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin: 0 auto 10px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333f5c; /* Input background color */
+            color: #ffffff; /* Input text color */
+        }
+        .form-container button {
+            background-color: #ff9933; /* Button background color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #ffffff; /* Button text color */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background-color: #cc7a29; /* Button hover color */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Daily Task Form</h1>
+        <form method="POST">
+          {% csrf_token %}
+          <label for="user">Employee <span style="color: red;">*</span></label>
+          <select id="user" name="user" required>
+              {% for user in form.user.field.queryset %}
+                  <option value="{{ user.id }}">{{ user.username }}</option>
+              {% endfor %}
+          </select>
+
+          <label for="date">Date <span style="color: red;">*</span></label>
+          <input type="date" id="date" name="date" required>
+
+          <label for="time">Time <span style="color: red;">*</span></label>
+          <input type="text" id="time" name="time" required>
+
+          <label for="task">Task <span style="color: red;">*</span></label>
+          <textarea id="task" name="task" placeholder="Enter your task" required></textarea>
+
+          <label for="link"><a href="https://meet.google.com/landing?pli=1" style="color: #ccc;">Link </a><span style="color: red;">*</span></label>
+          <input type="url" id="link" name="link" required>
+
+          <button type="submit">Submit</button>
+      </form>
+    </div>
+</body>
+</html>

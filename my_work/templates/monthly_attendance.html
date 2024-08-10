@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Attendance</title>
+</head>
+<body>
+    <h1>Attendance for {{ selected_month }}/{{ selected_year }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Date</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in monthly_records %}
+                <tr>
+                    <td>{{ record.user.username }}</td>
+                    <td>{{ record.date }}</td>
+                    <td>{{ record.checkin }}</td>
+                    <td>{{ record.checkout }}</td>
+                    <td>{{ record.start }}</td>
+                    <td>{{ record.end }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No records found for this month.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

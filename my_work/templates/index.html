@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>company home</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- fonts awesome style -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+  <style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+</style>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <div class="custom_menu-btn">
+          <button onclick="openNav()">
+            <span class="s-1"> </span>
+            <span class="s-2"> </span>
+            <span class="s-3"> </span>
+          </button>
+        </div>
+        <div id="myNav" class="overlay">
+          <div class="menu_btn-style ">
+            <button onclick="closeNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+          </div>
+          <div class="overlay-content">
+            <a class="active" href="{% url 'emp_home' %}">
+              Home
+            </a>
+              {% if not data %}
+              <a class="" href="{% url 'add_default_attendance' %}">
+                punch in
+              </a>
+              {% else %}
+                {% for i in data %}
+                  {% if i.end == True %}
+                  <a class="" href="{% url 'my_attendance' %}">
+                  Duty completed
+                  </a>
+                  {% else %}
+                  <a class="" href="{% url 'update_checkout' %}">
+                  punch out
+                  </a>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            <a class="" href="{% url 'duty_progress' %}">
+              duty on progress
+            </a>
+            <a class="" href="{% url 'apply_leave' %}">
+              Leave
+            </a>
+            <a class="" href="{% url 'leave_status' %}">
+              leave status
+            </a>
+            <a class="" href="{% url 'list_leave' %}">
+              Holydays  
+            </a>
+           
+           
+          </div>
+        </div>
+        <a class="navbar-brand" href="index.html">
+          <span>
+            welcome
+          </span>
+        </a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn" style="size: 250px;">
+              <i class="fa fa-user" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-content">
+              {% if not profile %}
+              <a href="{% url 'profile' %}">PROFILE</a>
+              {% else %}
+              <a href="{% url 'prof_view' %}">PROFILE</a>
+              {% endif %}
+              <a href="{% url 'lgout' %}">LOGOUT</a>
+          </div>
+      </div>
+        <div class="name_style">
+          <h6>
+            A
+            T
+            T
+            E
+            N
+            D
+            A
+            N
+            C
+            E
+            
+            
+          </h6>
+        </div>
+      </nav>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section position-relative">
+      <div class="box">
+        <div class="detail-box">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              welcome
+            </span>
+          </a>
+          <div class="carousel slide slider_text_carousel" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="heading_box">
+                  <h1>
+                    <span>
+                      We
+                    </span>
+                    <span>
+                      Can
+                    </span>
+                    <span>
+                      Grow
+                    </span>
+                    <span>
+                      Your
+                    </span>
+                    <span>
+                      Business
+                    </span>
+                  </h1>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="btn-box">
+            <a href="{% url 'list_task' %}" class="btn-1">
+              Daily Task
+            </a>
+            <a href="" class="btn-2">
+              Read More
+            </a>
+          </div>
+        </div>
+        <div class="img-box">
+          <div class="carousel slide slider_image_carousel carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="https://img.freepik.com/free-photo/flat-lay-workstation-with-copy-space-laptop_23-2148430867.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1721001600&semt=ais_user"
+                  alt="">
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- feature section -->
+
+  <section class="feature_section ">
+    <div class="carousel_btn-box">
+      <a class="slider_btn_prev" href="" role="button" data-slide="prev">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="slider_btn_next" href="" role="button" data-slide="next">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="container-fluid service_container">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6">
+          <div class="box">
+            <a href="{% url 'emp_monthly_attendence' %}"><div class="number_box">
+              <h5>
+                click
+              </h5>
+            </div></a>
+            <h4>
+              MONTHLY ATTENDANCE
+            </h4>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="box">
+            <a href="{% url 'apply_leave' %}"><div class="number_box">
+              <h5>
+                click
+              </h5>
+            </div></a>
+            <h4>
+              LEAVE
+            </h4>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="box">
+            <a href="{% url 'leave_status' %}"><div class="number_box">
+              <h5>
+                click
+              </h5>
+            </div></a>
+            <h4>
+              LEAVE STATUS
+            </h4>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="box">
+            <a href="{% url 'list_leave' %}"><div class="number_box">
+              <h5>
+                click
+              </h5>
+            </div></a>
+            <h4>
+              HOLIDAYS
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              Address
+            </h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +01 1234567890
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="info_social">
+            <a href="">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_link_box">
+            <h4>
+              Links
+            </h4>
+            <div class="info_links">
+              <a class="active" href="index.html">
+                <img src="images/nav-bullet.png" alt="">
+                Home
+              </a>
+              <a class="" href="about.html">
+                <img src="images/nav-bullet.png" alt="">
+                About
+              </a>
+              <a class="" href="service.html">
+                <img src="images/nav-bullet.png" alt="">
+                Services
+              </a>
+              <a class="" href="testimonial.html">
+                <img src="images/nav-bullet.png" alt="">
+                Testimonial
+              </a>
+              <a class="" href="news.html">
+                <img src="images/nav-bullet.png" alt="">
+                Latest News
+              </a>
+              <a class="" href="contact.html">
+                <img src="images/nav-bullet.png" alt="">
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_detail">
+            <h4>
+              Info
+            </h4>
+            <p>
+              necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin
+              words, combined with a handful
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h4>
+            Subscribe
+          </h4>
+          <form action="#">
+            <input type="text" placeholder="Enter email" />
+            <button type="submit">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <p>
+            &copy; <span id="displayYear"></span> All Rights Reserved. Design by
+            <a href="https://html.design/">Free Html Templates</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <!-- Google Map -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+</body>
+
+</html>

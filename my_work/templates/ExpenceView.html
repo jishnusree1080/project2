@@ -1,0 +1,80 @@
+{% extends "exicutiveindex.html" %}
+
+{% block bodyblock %}
+
+{% if not expenses%}
+<h3 style="margin-top: 200px; color: aliceblue; font-family: 'Times New Roman', Times, serif;">Hello {{request.user}}
+</h3>
+<h4 style="margin-top: 50px; color: aliceblue; font-family: 'Times New Roman', Times, serif;">No active expenses
+</h4>
+{% else %}
+<h3 style="margin-top: 200px; color: aliceblue; font-family: 'Times New Roman', Times, serif;  margin-left: 20px;">Hello {{request.user}}
+</h3>
+<table class="table table-dark table-striped">
+                
+    <thead>
+        <tr>
+            
+            <th>DATE</th>
+            <th>COLLEGE</th>
+            <th>TRANSPORT</th>
+            <th>TICKET</th>
+            <th>FUEL RECIEPT</th>
+            <th>FOOD BILL</th>
+            <th>OTHERS</th>
+            <th>STATUS</th>
+            
+
+            
+        </tr>
+    </thead>
+        {% for i in expenses %}
+    <tbody>
+        <tr>
+            
+            <td>{{i.date}}</td>
+            <td>{{i.college}}</td>
+            <td>{{i.transport}}</td>
+            {% if not i.ticket %}
+            <td>not available</td>
+            {% else %}
+            <td><a href="{{ i.ticket.url }}" target="_blank"><button>view</button></a></td>
+            {% endif %}
+            {% if  not i.fuel_receipt %}
+            <td>not available</td>
+            {% else %}
+            <td><a href="{{ i.fuel_receipt.url }}" target="_blank"><button>view</button></a></td>
+            {% endif %}
+            {% if not i.food_bill %}
+            <td>not available</td>
+            {% else %}
+            <td><a href="{{ i.food_bill.url }}" target="_blank"><button>view</button></a></td>
+            {% endif %}
+            {% if not i.others %}
+            <td>not available</td>
+            {% else %}
+            <td><a href="{{ i.others.url }}" target="_blank"><button>view</button></a></td>
+            {% endif%}
+            {% if i.approve == False %}
+                {% if i.reject == True %}
+                <td>Rejected</td>
+                {% else %}
+                <td>pending</td>
+                {% endif %}
+            {% else %}
+            <td>Accepted</td>
+            {% endif %}
+            
+            
+        </tr>
+        {% endfor %}
+       
+    </tbody>
+    
+</table>
+
+    
+
+{% endif %}
+
+{% endblock %}

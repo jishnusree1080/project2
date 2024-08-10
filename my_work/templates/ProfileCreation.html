@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Registration</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div class="container">
+        <form class="registration-form" method="POST">
+            {% csrf_token %}
+            <h1>School Championship Registration Form</h1>
+            <h3>GENERAL DETAILS</h3>
+            <label for="full_name">Full Name</label>
+            {{ form.full_name }}
+
+            <label for="email">Email</label>
+            {{ form.email }}
+
+            <label for="mobile">Mobile</label>
+            {{ form.mobile }}
+
+            <label for="date_of_birth">Date of Birth</label>
+            {{ form.date_of_birth }}
+
+            <label for="current_address">Current Address</label>
+            {{ form.current_address }}
+
+            <label for="qualification">Qualification</label>
+            {{ form.qualification }}
+            <br>
+            <br>
+
+            <h3>BANK DETAILS</h3>
+
+            <label for="bank_name">Bank Name</label>
+            {{ form.bank_name }}
+
+            <label for="ac_no">Account Number</label>
+            {{ form.ac_no }}
+
+            <label for="ifsc_code">IFSC Code</label>
+            {{ form.ifsc_code }}
+
+            <label for="branch">Branch</label>
+            {{ form.branch }}
+            <br>
+            <br>
+
+            <h3>PERSONAL DETAILS</h3>
+
+            <label for="permenant_address">Permanent Address</label>
+            {{ form.permenant_address }}
+
+            <label for="age">Age</label>
+            {{ form.age }}
+
+            <label for="father_name">Father's Name</label>
+            {{ form.father_name }}
+
+            <label for="mothers_name">Mother's Name</label>
+            {{ form.mothers_name }}
+            <label for="married">Married</label>
+            {{ form.married }}
+
+            <label for="spouse_name">Spouse Name</label>
+            {{ form.spouse_name }}
+
+            
+
+            
+            <button type="submit">Sign me up</button>
+        </form>
+    </div>
+</body>
+</html>

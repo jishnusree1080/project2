@@ -1,0 +1,329 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <title>Mexant - Financial HTML5 Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/templatemo-574-mexant.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+  <!--
+
+TemplateMo 574 Mexant
+
+https://templatemo.com/tm-574-mexant
+
+
+-->
+
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px;
+      max-width: 600px;
+      background-color: #fff;
+    }
+
+    .card-header {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card-body {
+      padding: 10px 0;
+    }
+
+    .div-dec {
+      width: 50px;
+      height: 3px;
+      background-color: #4CAF50;
+      /* Adjust the color as needed */
+      margin: 10px 0;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .green-button a,
+    .orange-button a {
+      display: block;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+    }
+
+    .green-button a {
+      background-color: #4CAF50;
+    }
+
+    .orange-button a {
+      background-color: #FFA500;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <!-- <a href="" class="logo">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="">
+                    </a> -->
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+
+                    
+         
+                      
+                    
+
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                      <li class="has-sub">
+                        <a href="javascript:void(0)">UPDATE</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'add_update' %}">NEW</a></li>
+                            <li><a href="{% url 'ex_update_list' %}">UPDATE VIEW</a></li>
+                            
+                        </ul>
+                       
+                    </li>
+                        
+                        <li class="has-sub">
+                          <a href="javascript:void(0)">CONTROLL</a>
+                          <ul class="sub-menu">
+                              <li><a href="{% url 'Ex_apply_leave' %}">LEAVE</a></li>
+                              <li><a href="{% url 'Exleave_status' %}">STATUS</a></li>
+                              <li><a href="{% url 'list_leave' %}">HOLIDAYS</a></li>
+                              <li><a href="{% url 'list_task' %}">TASK</a></li>
+                          </ul>
+                         
+                      </li>
+
+                        <li class="scroll-to-section"><a href="{% url 'emp_monthly_attendence' %}">ATTENDENCE</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">{{request.user}}</a>
+                            <ul class="sub-menu">
+                                {% if not profile %}
+                                <li><a href="{% url 'profile' %}">PROFILE</a></li>
+                                {% else %}
+                                <li><a href="{% url 'prof_view' %}">PROFILE</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'lgout' %}">LOGOUT</a></li>
+                            </ul>
+                           
+                        </li>
+                        <!-- <li class="scroll-to-section"><a href="#testimonials">Testimonials</a></li> -->
+                        {% if not data %}
+                        <li><a href="{% url 'ex_add_default_attendance' %}">PUNCH IN</a></li>
+                        {% else %}
+                          {% for i in data %}
+                            {% if i.end == True %} 
+                            <li><a href="#">Duty completed</a></li>
+                            {% else %}
+                            <li><a href="{% url 'ex_update_checkout' %}">PUNCH OUT</a></li>
+                            {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                   
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+  <div class="swiper-container" id="top">
+    <div class="swiper-wrapper">
+      <!-- <div class="swiper-slide">
+        <div class="slide-inner" style="background-image:url({% static 'assets/images/slide-01.jpg' %})">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="header-text">
+                  <h2>Get <em>ready</em> for your business<br>&amp; upgrade <em>all aspects</em></h2>
+                  <div class="div-dec"></div>
+                  <p>Mexant HTML5 Template is provided for free of charge. This layout is based on Boostrap 5 CSS framework. Anyone can download and edit for any professional website. Thank you for visiting TemplateMo website.</p>
+                  <div class="buttons">
+                    <div class="green-button">
+                      <a href="#">Discover More</a>
+                    </div>
+                    <div class="orange-button">
+                      <a href="#">Contact Us</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="swiper-slide">
+        <div class="slide-inner" style="background-image:url({% static 'assets/images/slide-02.jpg' %})">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="header-text">
+                  <h2><em>Digital</em> Currency for you <br>&amp; Best <em>Crypto</em> Tips</h2>
+                  <div class="div-dec"></div>
+                  <p>You will see a bunch of free CSS templates when you search on Google. TemplateMo website is probably the best one because it is 100% free. It does not ask you anything in return. You have a total freedom to use any template for any purpose.</p>
+                  <div class="buttons">
+                    <div class="green-button">
+                      <a href="#">Discover More</a>
+                    </div>
+                    <div class="orange-button">
+                      <a href="#">Contact Us</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="swiper-slide">
+        <div class="slide-inner" style="background-image:url({% static 'assets/images/slide-03.jpg' %})">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="card">
+                  <div class="card-header">
+                    <h2>Best One in Town<br>&amp; Crypto <em>Services</em></h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="div-dec"></div>
+                    <p>When you browse through different tags on TemplateMo website, you can see a variety of CSS
+                      templates which are responsive website designs for different individual needs. Please tell your
+                      friends about our website. Thank you.</p>
+                    <div class="buttons">
+                      <div class="green-button">
+                        <a href="#">Discover More</a>
+                      </div>
+                      <div class="orange-button">
+                        <a href="#">Contact Us</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div> -->
+  </div>
+
+  <!-- ***** Main Banner Area End ***** -->
+
+
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2022 Mexant Co., Ltd. All Rights Reserved.
+
+            <br>Designed by <a title="CSS Templates" rel="sponsored" href="https://templatemo.com"
+              target="_blank">TemplateMo</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js' %}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+
+  <script src="{% static 'assets/js/tabs.js' %}"></script>
+  <script src="{% static 'assets/js/swiper.js' %}"></script>
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  <script>
+    var interleaveOffset = 0.5;
+
+    var swiperOptions = {
+      loop: true,
+      speed: 1000,
+      grabCursor: true,
+      watchSlidesProgress: true,
+      mousewheelControl: true,
+      keyboardControl: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      on: {
+        progress: function () {
+          var swiper = this;
+          for (var i = 0; i < swiper.slides.length; i++) {
+            var slideProgress = swiper.slides[i].progress;
+            var innerOffset = swiper.width * interleaveOffset;
+            var innerTranslate = slideProgress * innerOffset;
+            swiper.slides[i].querySelector(".slide-inner").style.transform =
+              "translate3d(" + innerTranslate + "px, 0, 0)";
+          }
+        },
+        touchStart: function () {
+          var swiper = this;
+          for (var i = 0; i < swiper.slides.length; i++) {
+            swiper.slides[i].style.transition = "";
+          }
+        },
+        setTransition: function (speed) {
+          var swiper = this;
+          for (var i = 0; i < swiper.slides.length; i++) {
+            swiper.slides[i].style.transition = speed + "ms";
+            swiper.slides[i].querySelector(".slide-inner").style.transition =
+              speed + "ms";
+          }
+        }
+      }
+    };
+
+    var swiper = new Swiper(".swiper-container", swiperOptions);
+  </script>
+</body>
+
+</html>

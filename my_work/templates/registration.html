@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Form</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0d1125; /* Dark background color */
+        }
+        .form-container {
+            background-color: #1b2a47; /* Form background color */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            color: #ffffff; /* Text color */
+            text-align: center;
+        }
+        .form-container h1 {
+            background-color: #ff9933; /* Header background color */
+            border-radius: 15px 15px 0 0;
+            margin: -30px -30px 20px -30px;
+            padding: 20px;
+            font-size: 24px;
+            color: #ffffff; /* Header text color */
+        }
+        .form-container p {
+            margin: 10px 0;
+        }
+        .form-container label {
+            display: block;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+        }
+        .form-container input[type="date"] {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin: 0 auto 10px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333f5c; /* Input background color */
+            color: #ffffff; /* Input text color */
+        }
+
+        .form-container textarea[id="reason"] {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin: 0 auto 10px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #333f5c; /* Input background color */
+            color: #ffffff; /* Input text color */
+        }
+        .form-container button {
+            background-color: #ff9933; /* Button background color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #ffffff; /* Button text color */
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container button:hover {
+            background-color: #cc7a29; /* Button hover color */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>STAFF REGISTRATION</h1>
+        <form method="POST">
+          {% csrf_token %}
+          <label for="username">USERNAME<span style="color: red;">*</span></label>
+          <input type="text" id="username" name="username" required>
+      
+          <label for="first_name">FIRST NAME<span style="color: red;">*</span></label>
+          <input type="text" id="first_name" name="first_name" required>
+
+          <label for="last_name">LAST NAME<span style="color: red;">*</span></label>
+          <input type="text" id="last_name" name="last_name" required>
+
+          <label for="password">PASSWORD<span style="color: red;">*</span></label>
+          <input type="password" id="password" name="password" required>
+
+          <label for="email">EMAIL<span style="color: red;">*</span></label>
+          <input type="email" id="email" name="email" required>
+
+          <div>
+            <label for="user_type">USER TYPE<span style="color: red;">*</span></label>
+            <select class="form-control" id="user_type" name="user_type">
+                <option value="staff" name="staff">EMPLOYEE</option>
+                <option value="exicutive" name="exicutive">EXICUTIVE</option>
+            </select>
+
+          </div>
+          <br>
+          <button type="submit">Submit</button>
+          <br>
+          <br>                  
+          <a href="{% url 'admin_home' %}" style="color: #d6d9e8;">HOME</a>
+      </form>
+</body>
+</html>
+
+                                     
+
+
+
+
+
+

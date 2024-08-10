@@ -1,0 +1,39 @@
+{% extends "exicutiveindex.html" %}
+
+{% block bodyblock %}
+
+{% if not data%}
+<h3 style="margin-top: 200px; color: aliceblue; font-family: 'Times New Roman', Times, serif;">Hello {{request.user}}
+</h3>
+<h4 style="margin-top: 50px; color: aliceblue; font-family: 'Times New Roman', Times, serif;">No active leave request
+</h4>
+{% else %}
+<h3 style="margin-top: 200px; color: aliceblue; font-family: 'Times New Roman', Times, serif;  margin-left: 20px;">Hello {{request.user}}
+</h3>
+<table class="table table-dark table-striped" style="margin-top: 50px; margin-left: 20px;">
+    <thead>
+        <tr>
+            <th>date</th>
+            <th>Reason</th>
+            <th>status</th> 
+        </tr>
+    </thead>
+    {% for i in data %}
+    <tbody>
+        <tr>
+            <td>{{i.date}}</td>
+            <td>{{i.reason}}</td>
+            {% if i.status == True %}
+            <td>ACCEPTED</td>
+            {% else %}
+            <td>PENDING</td>
+            {% endif %}
+        </tr>
+
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,165 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1b2431;
+    color: #738297;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1b2431;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-link {
+    color: #738297;
+    text-decoration: none;
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: white;
+}
+
+.saved-reports {
+    margin-top: 30px;
+}
+
+.saved-reports h3 {
+    color: #738297;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.sign-out {
+    padding: 10px 20px;
+    background-color: #738297;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #2a3e52;
+    padding: 20px;
+    border-radius: 10px;
+    width: 23%;
+    color: white;
+    text-align: center;
+}
+
+.card.blue { background-color: #007bff; }
+.card.green { background-color: #28a745; }
+.card.orange { background-color: #fd7e14; }
+.card.red { background-color: #dc3545; }
+
+.card .title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card .value {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.card .stat {
+    font-size: 14px;
+}
+
+.projects {
+    background-color: #2a3e52;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.projects h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    color: #738297;
+    border-bottom: 1px solid #738297;
+}
+
+td {
+    color: white;
+    border-bottom: 1px solid #738297;
+}
+
+tr:hover {
+    background-color: #1b2431;
+}
+
+.overdue {
+    color: #dc3545;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.status.in-progress { background-color: #28a745; }
+.status.blocked { background-color: #dc3545; }
+
+.actions {
+    padding: 10px 20px;
+    background-color: #738297;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

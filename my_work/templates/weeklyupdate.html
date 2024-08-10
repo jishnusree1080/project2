@@ -1,0 +1,27 @@
+<!-- weekly_updates.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weekly Updates</title>
+</head>
+<body>
+    <h1>Weekly Updates</h1>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Get Weekly Updates</button>
+    </form>
+    <ul>
+        {% for update in updates %}
+            <li>
+                <strong>Date:</strong> {{ update.date }}<br>
+                <strong>College Name:</strong> {{ update.college_name }}<br>
+                <strong>Suggestions:</strong> {{ update.suggessions }}<br>
+                <strong>Feedback:</strong> {{ update.feed_back }}<br>
+                <strong>Remark:</strong> {{ update.remark }}<br>
+                <strong>Status:</strong> {{ update.status }}<br>
+                <strong>Created At:</strong> {{ update.created_at }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
